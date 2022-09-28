@@ -31,8 +31,7 @@ jobs:
           mkdir -p $GITHUB_WORKSPACE/release
           mv ib-x86.tar.xz $GITHUB_WORKSPACE/release/x86.tar.xz
           mv ib-r1p.tar.xz $GITHUB_WORKSPACE/release/r1p.tar.xz        
-          echo "strDate=$(TZ=UTC-8 date +%Y.%m.%d)" >> $GITHUB_ENV
-          echo "strDevice=$(echo $DEVICE | awk '{print toupper($0)}')" >> $GITHUB_ENV
+          echo "strDate=$(TZ=UTC-8 date +%Y.%m.%d)" >> $GITHUB_ENV         
       - name: Upload release asset
         uses: svenstaro/upload-release-action@v2
         with:
@@ -41,7 +40,7 @@ jobs:
           tag: ${{env.strDate}}
           file_glob: true
           overwrite: true
-          release_name: cache_${{env.strDevice}} ${{env.strDate}} 
+          release_name: cache_${{env.strDate}} 
           
       - name: Delete workflow runs
         uses: GitRML/delete-workflow-runs@main
