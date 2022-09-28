@@ -25,12 +25,18 @@ jobs:
         run: |
           sudo apt update && sudo apt install qemu-utils
           sudo sysctl vm.swappiness=0
-          ulimit -SHn 65000  
-          curl -JLO  https://github.com/klever1988/sshactions/releases/download/cache/ib-x86.tar.xz    
+          ulimit -SHn 65000 
           curl -JLO  https://github.com/klever1988/sshactions/releases/download/cache/ib-r1p.tar.xz   
+          curl -JLO  https://github.com/klever1988/sshactions/releases/download/cache/ib-r2s.tar.xz   
+          curl -JLO  https://github.com/klever1988/sshactions/releases/download/cache/ib-r4s.tar.xz 
+          curl -JLO  https://github.com/klever1988/sshactions/releases/download/cache/ib-r5s.tar.xz   
+          curl -JLO  https://github.com/klever1988/sshactions/releases/download/cache/ib-x86.tar.xz   
           mkdir -p $GITHUB_WORKSPACE/release
-          mv ib-x86.tar.xz $GITHUB_WORKSPACE/release/x86.tar.xz
-          mv ib-r1p.tar.xz $GITHUB_WORKSPACE/release/r1p.tar.xz        
+          mv ib-r1p.tar.xz $GITHUB_WORKSPACE/release/r1p.tar.xz  
+          mv ib-r2s.tar.xz $GITHUB_WORKSPACE/release/r2s.tar.xz 
+          mv ib-r4s.tar.xz $GITHUB_WORKSPACE/release/r4s.tar.xz 
+          mv ib-r5s.tar.xz $GITHUB_WORKSPACE/release/r5s.tar.xz 
+          mv ib-x86.tar.xz $GITHUB_WORKSPACE/release/x86.tar.xz      
           echo "strDate=$(TZ=UTC-8 date +%Y.%m.%d)" >> $GITHUB_ENV         
       - name: Upload release asset
         uses: svenstaro/upload-release-action@v2
