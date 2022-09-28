@@ -39,8 +39,8 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ./release/*
           tag: ${{env.strDate}}
-          file_glob: false
-          overwrite: false
+          file_glob: true
+          overwrite: true
           release_name: cache_${{env.strDevice}} ${{env.strDate}} 
           
       - name: Delete workflow runs
