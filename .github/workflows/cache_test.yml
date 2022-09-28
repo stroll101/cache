@@ -15,8 +15,6 @@ jobs:
   generate_firmware:
     name: Generate x86 firmware
     runs-on: ubuntu-20.04
-    env:
-      DEVICE: x86
     steps:
 
       - uses: actions/checkout@v2
@@ -28,9 +26,11 @@ jobs:
           sudo apt update && sudo apt install qemu-utils
           sudo sysctl vm.swappiness=0
           ulimit -SHn 65000  
-          curl -JLO  https://github.com/klever1988/sshactions/releases/download/cache/ib-$DEVICE.tar.xz    
+          curl -JLO  https://github.com/klever1988/sshactions/releases/download/cache/ib-x86.tar.xz    
+          curl -JLO  https://github.com/klever1988/sshactions/releases/download/cache/ib-r1p.tar.xz   
           mkdir -p $GITHUB_WORKSPACE/release
-          mv ib-$DEVICE.tar.xz $GITHUB_WORKSPACE/release/$DEVICE.tar.xz
+          mv ib-x86.tar.xz $GITHUB_WORKSPACE/release/x86.tar.xz
+          mv ib-r1p.tar.xz $GITHUB_WORKSPACE/release/r1p.tar.xz        
           echo "strDate=$(TZ=UTC-8 date +%Y.%m.%d)" >> $GITHUB_ENV
           echo "strDevice=$(echo $DEVICE | awk '{print toupper($0)}')" >> $GITHUB_ENV
       - name: Upload release asset
